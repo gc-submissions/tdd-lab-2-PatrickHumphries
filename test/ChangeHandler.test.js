@@ -40,4 +40,25 @@ describe("ChangeHandler", function() {
     change.insertCoin('nickle');
     expect(change.cashTendered).toEqual(31);
   });
+  test("cashTendered > amountDue", function() { 
+    const change = new ChangeHandler();
+    change.insertCoin('penny');
+    change.insertCoin('quarter');
+    change.insertCoin('nickle');
+    let result = change.isPaymentSufficient();
+    expect(result).toBe(true);
+  });
+  test("cashTendered < amountDue", function() { 
+    const change = new ChangeHandler(1);
+    let result = change.isPaymentSufficient();
+    expect(result).toBe(false);
+  });
+  test("cashTendered === amountDue", function() { 
+    const change = new ChangeHandler(1);
+    change.insertCoin('penny');
+    change.insertCoin('quarter');
+    change.insertCoin('nickle');
+    let result = change.isPaymentSufficient();
+    expect(result).toBe(true);
+  });
 });
