@@ -7,7 +7,7 @@ class ChangeHandler {
     
     constructor(amountDue) {
         this.amountDue = null;
-        this.cashTendered = null;
+        this.cashTendered = 0;
     }
 
     /**
@@ -15,7 +15,18 @@ class ChangeHandler {
      * @param {string} type either quarter, dime, nickel, or penny
      */
     insertCoin(type) {
-      // TODO
+      if (type === 'quarter') {
+        this.cashTendered += 25;
+      }
+      if (type === 'dime') {
+        this.cashTendered += 10;
+      }
+      if (type === 'nickle') {
+        this.cashTendered += 5;
+      }
+      if (type === 'penny') {
+        this.cashTendered += 1;
+      }
     }
 
     /**
